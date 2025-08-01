@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +24,7 @@ public class Job { // job posted by employer
     private String type; // online, in-person, hybrid
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
+    @JsonIgnore
     private Company company; // Employer who posted the job
     private Integer minSalary;
     private Integer maxSalary;

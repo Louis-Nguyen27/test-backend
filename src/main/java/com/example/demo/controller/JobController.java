@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ResultObject;
 import com.example.demo.entity.Job;
 import com.example.demo.repository.JobRepository;
 
@@ -18,7 +19,11 @@ public class JobController {
         this.jobRepository = jobRepository;
     }
     @GetMapping("/all")
-    public List<Job> getAllJobs() {
-        return jobRepository.findAll(Pageable.unpaged()).toList();
+    public ResultObject getAllJobs() {
+        return new ResultObject(
+            "Success",
+            200,
+            jobRepository.findAll(Pageable.unpaged()).toList()
+        );
     }
 }

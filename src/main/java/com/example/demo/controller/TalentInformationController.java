@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ResultObject;
 import com.example.demo.entity.Talent;
 import com.example.demo.repository.TalentRepository;
 
@@ -22,8 +23,11 @@ public class TalentInformationController {
     }
 
     @GetMapping("/all")
-    public List<Talent> getAllTalents() {
-        return talentRepository.findAll(Pageable.unpaged()).toList();
+    public ResultObject getAllTalents() { /// Get latest talents, get related talents,...
+        return new ResultObject(
+            "Success",
+            200,
+            talentRepository.findAll(Pageable.unpaged()).toList()
+        );
     }
-    
 }

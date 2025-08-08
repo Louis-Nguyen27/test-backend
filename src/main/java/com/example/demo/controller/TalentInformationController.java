@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -30,4 +31,14 @@ public class TalentInformationController {
             talentRepository.findAll(Pageable.unpaged()).toList()
         );
     }
+    @GetMapping("/{id}")
+    public ResultObject getTalentById(@PathVariable Long id) {
+        Talent talent = talentRepository.findById(id);
+        if (talent != null) {
+            return new ResultObject("Success", 200, talent);
+        } else {
+            return new ResultObject("Talent not found", 404, null);
+        }
+    }
+    
 }

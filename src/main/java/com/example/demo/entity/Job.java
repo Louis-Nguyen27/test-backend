@@ -31,6 +31,7 @@ public class Job { // job posted by employer
     private Integer views;
     private Integer applications; // Number of applications received for the job
     private Date dateUpdated; // Date when the job was last updated
+    @JsonIgnore
     @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
     private List<TalentAndJob> talentAndJobs = new ArrayList<>();
 }

@@ -8,6 +8,7 @@ import com.example.demo.enumeration.JobsSearchIntentions;
 import com.example.demo.utils.UtilsType.Education;
 import com.example.demo.utils.UtilsType.JobExperience;
 import com.example.demo.utils.UtilsType.Skill;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -38,8 +39,10 @@ public class Talent {
     @Convert(converter = com.example.demo.converter.EducationListConverter.class)
     private List<Education> education;
     private Date dateUpdated;
+    @JsonIgnore
     @OneToMany(mappedBy = "talent", fetch = FetchType.LAZY)
     private List<TalentAndJob> talentAndJobs = new ArrayList<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "talent", fetch = FetchType.LAZY)
     private List<CompanyAndTalent> companyAndTalents = new ArrayList<>();
 

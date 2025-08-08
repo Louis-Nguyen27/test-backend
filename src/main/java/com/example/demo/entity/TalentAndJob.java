@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.enumeration.JobApplicationStatus;
 import com.example.demo.enumeration.JobOfferStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class TalentAndJob {
 
     @ManyToOne
     @JoinColumn(name = "job_id", nullable = false)
+    @JsonIgnore
     private Job job;
     private boolean isInterested; // Indicates if the job seeker is interested in the job
     private String note; // Note from the job seeker about the job

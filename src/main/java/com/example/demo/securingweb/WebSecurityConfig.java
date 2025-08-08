@@ -19,7 +19,7 @@ public class WebSecurityConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000")
+                registry.addMapping("/**").allowedOriginPatterns("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
@@ -29,7 +29,8 @@ public class WebSecurityConfig {
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests
+        http.csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests((requests) -> requests
             .anyRequest().permitAll());
 
         return http.build();

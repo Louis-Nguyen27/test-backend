@@ -38,4 +38,28 @@ public class UtilsType {
         private String major;
         private Float credits;
     }
+    @Getter
+    @Setter
+    public static class Career {
+
+    }
+    @Getter
+    @Setter
+    public static class Project {
+
+    }
+    @Getter
+    @Setter
+    public static class Certification {
+        private String name;
+        private String issuingOrganization;
+        private String issueDate;
+        private String expirationDate;
+    }
+    @Getter
+    @Setter
+    public static class URL {
+        private String type;
+        private String url;
+    }
 }

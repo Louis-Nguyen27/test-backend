@@ -158,8 +158,21 @@ public class TalentAndJobController {
         }
         return new ResultObject("No application to reject", 400, null);
     }
+
+    @PostMapping("/accept-application")
+    public ResultObject acceptApplication(@RequestBody TalentAndJobDto talentAndJobDto) {
+        TalentAndJob talentAndJob = talentAndJobRepository.findByTalentIdAndJobId(
+            talentAndJobDto.getTalentId(), talentAndJobDto.getJobId()
+        );
+        if (talentAndJob != null && talentAndJob.getJobApplicationStatus() == JobApplicationStatus.APPLIED) {
+            talentAndJob.setJobApplicationStatus(JobApplicationStatus.ACCEPTED);
+            //talentAndJob.setDateAccepted(java.util.Date.from(java.time.Instant.now()));
+            talentAndJobRepository.save(talentAndJob);
+            return new ResultObject("Application accepted successfully", 200, talentAndJob);
+        }
+        return new ResultObject("No application to accept", 400, null);
+    }
     
-    /// Accept an application
     /// Schedule an interview
     /// Accept an interview
 }

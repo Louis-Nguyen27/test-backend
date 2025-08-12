@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Company {
+public class Company extends User { // Employer who posts jobs
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
